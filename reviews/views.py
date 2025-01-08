@@ -3,6 +3,7 @@ from .forms import UserRegistrationForm
 from .models import User
 import subprocess
 import bcrypt
+import os
 def landing(request):
     return render(request, 'index.html')
 # def sign(request):
@@ -69,9 +70,25 @@ def login(request):
             return render(request, "login.html", {"error": "User does not exist"})
     return render(request, "login.html")
 
+
 def reviews(request):
     """Render the reviews page."""
-    # Optionally run the Streamlit app when the page is accessed (if needed).
-    # subprocess.Popen(["streamlit", "run", "path/to/your/streamlit_app.py"])
+    try:
+        # Get the absolute path to the 'streamlit_app.py' inside the 'reviews' folder
+        streamlit_script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'streamlit_app.py')
 
-    return render(request, "reviews.html")
+        # Print the path to confirm it's correct
+        print("Streamlit script path:", streamlit_script_path)
+
+        # Check if the file exists at that path
+        if os.path.exists(streamlit_script_path):
+            # Run the Streamlit app (ensure the path is correct)
+            subprocess.Popen(["streamlit", "run", streamlit_script_path])
+        else:
+            print(f"Streamlit script not found at: {streamlit_script_path}")
+    except Exception as e:
+        # If there's an error running the Streamlit app, log or handle it
+        print(f"Error running Streamlit app: {e}")
+
+    # Render the reviews page
+    return render(request, "login.html")
