@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 import bcrypt
 
 class CustomUserManager(BaseUserManager):
@@ -14,11 +14,12 @@ class CustomUserManager(BaseUserManager):
     def create_superuser(self, email, password, name=None):
         user = self.create_user(email, password, name)
         user.is_admin = True
+        user.is_staff = True  # Ensure is_staff is True
         user.save(using=self._db)
         return user
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser,PermissionsMixin):
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=250)
     password = models.CharField(max_length=250)
