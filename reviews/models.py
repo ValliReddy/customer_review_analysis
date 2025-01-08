@@ -1,7 +1,4 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 import bcrypt
 
@@ -10,7 +7,7 @@ class CustomUserManager(BaseUserManager):
         if not email:
             raise ValueError("The Email field must be set")
         user = self.model(email=email, name=name)
-        user.set_password(password)
+        user.set_password(password)  # This will hash the password properly
         user.save(using=self._db)
         return user
 
@@ -37,4 +34,5 @@ class User(AbstractBaseUser):
         return self.email
 
     def check_password(self, password):
-        return bcrypt.checkpw(password.encode("utf-8"), self.password.encode("utf-8"))
+        # You do not need to manually check the password if you use set_password and check_password methods of Django.
+        return super().check_password(password)

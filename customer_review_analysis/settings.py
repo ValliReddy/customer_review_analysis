@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+AUTH_USER_MODEL = 'reviews.User'
 # Application definition
 
 INSTALLED_APPS = [
@@ -114,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'reviews.User'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
