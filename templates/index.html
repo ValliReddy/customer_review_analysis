@@ -1,0 +1,68 @@
+{% load static %}  <!-- Load static files at the top -->
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Spectral by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!-- Correcting the path for the static CSS file using Django's static tag -->
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<noscript>
+			<!-- Correcting the path for the noscript CSS file using Django's static tag -->
+			<link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" />
+		</noscript>
+	</head>
+	<body class="landing is-preload">
+
+		<div id="page-wrapper">
+
+			<header id="header" class="alt">
+				<h1><a href="index.html">Spectral</a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="special">
+							<a href="#menu" class="menuToggle"><span>Menu</span></a>
+							<div id="menu">
+								<ul>
+									<!-- Use Django's URL routing system -->
+									<li><a href="{% url 'sign' %}">Sign Up</a></li>
+									<li><a href="{% url 'login' %}">Log In</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h2>Customer review analysis</h2>
+				</div>
+			</section>
+
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+					<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+			</footer>
+
+		</div>
+
+		<!-- Scripts -->
+		<!-- Correcting the paths for JavaScript files using Django's static tag -->
+		<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+		<script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+		<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+		<script src="{% static 'assets/js/browser.min.js' %}"></script>
+		<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+		<script src="{% static 'assets/js/util.js' %}"></script>
+		<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>
